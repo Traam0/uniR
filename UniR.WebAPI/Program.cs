@@ -10,8 +10,10 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-    
+        
         builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer()
+            .AddSwaggerGen();
         // builder.RegisterInfrastructure();
         
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -23,6 +25,8 @@ public class Program
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
 
         app.UseHttpsRedirection();
